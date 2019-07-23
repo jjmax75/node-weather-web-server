@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 app.get('', (req, res) => {
-	res.send('Hello Express');
+	res.send('<h1>Weather</h1>');
 });
 
 app.get('/help', (req, res) => {
@@ -11,11 +11,14 @@ app.get('/help', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-	res.send('about page');
+	res.send('<h1>about</h1>');
 });
 
 app.get('/weather', (req, res) => {
-	res.send('weather page');
+	res.send({
+		forecast: 'aas',
+		location: 'aadsf',
+	});
 });
 
 app.listen(3000, () => {
