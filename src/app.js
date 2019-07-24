@@ -1,7 +1,11 @@
+require('dotenv').config();
+
 const path = require('path');
 
 const express = require('express');
 const hbs = require('hbs');
+
+const processWeatherRequest = require('./processWeatherRequest');
 
 const app = express();
 
@@ -51,9 +55,11 @@ app.get('/weather', (req, res) => {
 		});
 	}
 
-	res.send({
-		forecast: 'aas',
-		location: req.query.address,
+	processWeatherRequest(req.query.address, weatherReport => {
+		res.send({
+			forecast: weatherReport,
+			location: req.query.address,
+		});
 	});
 });
 
